@@ -1,7 +1,7 @@
 "#job-search-portal" 
 
 Run:
-$ cd to <project desktop>
+$ cd to project folder
   
 $ python manage.py createsuperuser
 
