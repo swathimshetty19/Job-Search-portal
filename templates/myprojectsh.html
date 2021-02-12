@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% load static %}
+<script type="text/javascript" src="{% static 'jquery-3.4.1.min.js' %}"></script> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
+<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="icon" href="{% static 'icon.png' %}" type="image/png" sizes="16x16">
+<link href="//www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<title>Your Projects</title>
+<style>
+.collapsible {
+  background-color: #D0D0D0;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.collapsible:after {
+  content: '\002B';
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
+}
+.content :hover {
+    color:cornflowerblue;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #FFFFFF;
+    position: -webkit-sticky; 
+    position: sticky;
+    top: 0;
+}
+li {
+    float: right;
+}
+li a {
+    display: block;
+    color:#000000;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+li a:hover {
+    color:cornflowerblue;
+}
+
+.afternav{
+    background-color:	#F5F5F5;
+}
+
+@font-face {
+  font-family: Poppins-Regular;
+  src: url('fonts/poppins/Poppins-Regular.ttf'); 
+}
+
+@font-face {
+  font-family: Poppins-Bold;
+  src: url('fonts/poppins/Poppins-Bold.ttf'); 
+}
+
+@font-face {
+  font-family: Poppins-Medium;
+  src: url('fonts/poppins/Poppins-Medium.ttf'); 
+}
+
+@font-face {
+  font-family: Montserrat-Bold;
+  src: url('fonts/montserrat/Montserrat-Bold.ttf'); 
+}
+
+a {
+
+	font-size: 14px;
+	line-height: 1.7;
+	color: #666666;
+	margin: 0px;
+	transition: all 0.4s;
+	-webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+}
+
+
+a:hover {
+	text-decoration: none;
+  color: #57b846;
+}
+
+
+</style>
+<script type="text/javascript" ">
+
+</script>
+</head>
+<body  ng-app="myApp" ng-controller="myCtrl">
+<ul>
+  <li>&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+
+  <!--<li><a  href="{% url 'profile' pk=pk %}"><b>About Me<b></a></li>-->
+  <li><a href="{% url 'post_project' pk=pk %}"><b>Post a new Job<b></a></li>
+  <li><a class="active" href="#"><b>Jobs Posted<b></a></li>
+  <li><a href="{% url 'home' %}"><b>Logout<b></a></li>
+  <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+
+ 
+  <li><img src="{% static 'logo.png' %}" width="15%" height="0.7%"></li>
+</ul>
+
+<button class="collapsible">Jobs you Posted:</button>
+<div class="content">
+    {% for p in projects_own %}
+    <p><a href="/myproj/{{pk}}/{{p.name}}/">{{p.name}}</a></p>
+    {% endfor %}
+</div>
+
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+
+</body>
+
+</html>

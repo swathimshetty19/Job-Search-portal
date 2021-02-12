@@ -1,0 +1,185 @@
+<html lang="en-US">
+
+<head>
+	{% load static %}
+	<link rel="icon" href="{% static 'icon.png' %}" type="image/png" size="16*16">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script type="text/javascript" src="{% static 'jquery-3.4.1.min.js' %}"></script> 
+	<script type="text/javascript" > 
+		function refresh() {
+			console.log("refreshing")
+			$.ajax({
+				url: "{% url 'browse' user=user %}",
+				success: function(data) {
+					$('#right').replaceWith($('#right',data)); // NOTE this
+				}
+			});
+		}
+	
+		$(function () {
+				setInterval('refresh()', 5000);
+			});
+		</script> 
+		{% load static %}
+		<link rel="icon" href="{% static 'icon.png' %}" type="image/png" size="16*16">
+	{% load static %}
+
+
+<style>
+
+ul{
+	list-style-type: none;
+	margin:0;
+	padding:0;
+	overflow:hidden;
+	background-color: white;
+	position: -webkit-sticky;
+	position: sticky;
+	top:0;
+
+
+}
+li{
+	float:right;
+
+}
+
+li a{
+	display:block;
+	color: black;
+	text-align: center;
+	padding: 15px 16px;
+	text-decoration: none;
+	font-size: 17px;
+
+}
+li a:hover{
+	color:cornflowerblue;
+
+}
+
+.button {
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: cornflowerblue;
+  color:black;
+  padding: 9px 15px 9px 15px;
+  border-top: 2px solid white;
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+  border-left: 2px solid white;
+  margin-left:1200px;
+
+}
+.myObj {
+		color : black;
+		background-color : white;
+		font-size : 40px;
+		padding : 2px;
+		width:100%;	
+		  }
+.div_block {
+  		background-color: lightgray;
+  		height: 190px;
+  		width: 100%;
+  		position: relative;
+  		top: 0;
+  		left: 0;
+	  }
+
+h2 {
+  transition: all linear 0.5s;
+  background-color:black;
+  height: 30px;
+  width: 50%;
+  position: relative;
+  top: 0;
+  left: 0;
+  color:azure;
+}
+
+p.b {
+  font-style: italic;
+  font-size: 30px;
+  text-align: center;
+  
+}
+p.c {
+	font-style: italic;
+  font-size: 40px;
+  text-align: center;
+  text-shadow: 2px 2px grey;
+}
+</style>
+
+
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+
+	<ul>
+        <li>&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+      
+        <li><a href="{% url 'profile' pk=user %}"><b>About Me<b></a></li>
+        <!--<li><a href="{% url 'post_project' pk=user %}"><b>Post a Project<b></a></li>-->
+        <li><a href="{% url 'browse' user=user %}"><b>Search Jobs<b></a></li>
+        <li><a  href="/myprojects/{{user}}/"><b>Applied Jobs<b></a></li>
+        <li><a href="{% url 'home' %}"><b>Logout<b></a></li>
+        <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+        <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+  
+        <li><img src="{% static 'logo.png' %}" width="12%" height="2%"></li>
+    </ul>
+
+	<div id="right">
+<h1 class="myObj" ng-style="myObj"><p class="c">Welcome {{user}} !!</p>
+
+<p class="b">Here are the jobs recommended based on your skills: <p></h1>
+
+{% for i in pro%}
+
+  <div ng-style="div_block" class="div_block">
+    <h2><p class="b">Company Name  :  {{i.0}}</p></h2>
+	<h3>Role Description  :  {{i.1}}</h3>
+	<h3>Payment  :  {{i.2}}</h3>
+	
+ <a href="/browse_pro_desc/{{i.3}}/{{user}}" class="button" ><span class="glyphicon glyphicon-plus">Apply</span></a>
+
+
+</a>
+</div>
+{% endfor %}
+</div>
+<script>
+	var app = angular.module("myApp", []);
+	app.controller("myCtrl", function($scope) {
+	  $scope.myObj = {
+		"color" : "black",
+		"background-color" : "white",
+		"font-size" : "40px",
+		"padding" : "2px",
+		"width":"100%",	
+		  }
+	  $scope.div_block ={
+  		"background-color": "lightgray",
+  		"height": "190px",
+  		"width": "100%",
+  		"position": "relative",
+  		"top": "0",
+  		"left": "0"
+	  }
+
+	});
+</script>
+</body>
+
+</html>
+
+<!-- hints to take values from templates-->
+<!--	{{ mydict.key}}
+	{{ mylist.object}}
+	{{ myobject.attribute}}
+-->
+
+
+

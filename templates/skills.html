@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <script type="text/javascript" src="{% static 'jquery-3.4.1.min.js' %}"></script> 
+    <script type="text/javascript" src="{% static 'ajax.js' %}"> </script>
+     {% load static %}
+<style> 
+input[type=text], input[type=email], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}        
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color:#eaeded;
+  height:700px;
+  align-items: stretch;
+  
+}
+
+
+.flex-container > div {
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  color: black;
+  width: 100px;
+  margin: 20px;
+  text-align: center;
+  line-height:50px;
+  font-size: 20px;
+}
+
+a:link, a:visited {
+  background-color: gray;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: black;
+}
+
+</style> 
+ 
+</head>
+
+<body>
+
+<h1>Hello {{pk}}, Select your skills to help us recommend jobs</h1>
+    {% csrf_token %}
+<div class="flex-container">
+
+  <div style="flex-basis:500px;height:0px;line-height:0px;text-align:left">
+  <input style="width:100%" type="text" id="search" name="search" placeholder="Search Keyword">
+  <ul id="search-results"></ul>
+  </div>
+  
+  <div style="flex-basis:500px;height:600px">
+  Skills Selected By You:
+  <ul>
+  {% for skill in skills%}
+  {{skill}}<br>
+  {% endfor %}
+  </ul>
+  
+  </div>
+  
+</div>
+<a style="float:right" href="/otherdetails/{{pk}}/">Next Page</a>
+</body>
+</html>

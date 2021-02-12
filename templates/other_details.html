@@ -1,0 +1,163 @@
+<html>
+<style>
+
+* {
+  box-sizing: border-box;
+}            
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color:#eaeded;
+  height:1000px;
+  align-items: stretch;
+  
+}
+
+
+.flex-container > div {
+  background-color: white;
+  color: black;
+  width: 100px;
+  margin: 20px;
+  font-size: 20px;
+}
+
+a:link, a:visited {
+  background-color: gray;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: black;
+}
+
+.fch {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+input[type=text], input[type=email], input[type=number], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 25%;
+  background-color: gray;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right
+}
+
+input[type=submit]:hover {
+  background-color: black;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas:'header header header header header header' 
+    'left left middle middle right right' 
+    'footer footer footer footer footer footer';
+  grid-column-gap: 10px; 
+} 
+
+.left,
+.middle,
+.right {
+  padding: 10px;
+  height: 200px;
+  text-align:center;/* Should be removed. Only for demonstration */
+}
+
+/* Style the left column */
+.left {
+  grid-area: left;
+}
+
+/* Style the middle column */
+.middle {
+  grid-area: middle;
+}
+
+/* Style the right column */
+.right {
+  grid-area: right;
+}
+
+</style>
+<body background-color="#eaeded">
+
+<div class="flex-container">
+
+ <div style="flex-basis:150px;height:600px;background-color:#eaeded">
+
+ </div>
+  
+ <div style="flex-basis:400px;height:600px;background-color:#eaeded"></br></br></br><b>Complete Your Profile</b></br></br>
+ Fill in your profile for employers to better understand your services when they visit your profile page.<br><br>it is important to leave accurate information here to maximize your chances of getting jobs.
+  </div>
+  
+  <div style="flex-basis:950px;height:600px">
+ <div class="fch">
+ <form method="POST" class="post-form">
+    {% csrf_token %}
+
+    <div>
+    <label for="fname">First Name</label>
+    <input style="width:30%" type="text" id="firstname" name="firstname" placeholder="Your name..">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <label for="lname">Last Name</label>
+    <input style="width:30%" type="text" id="lastname" name="lastname" placeholder="Your last name..">
+    </div><br>
+    <label for="number">Contact Number</label>
+    <input type="number" id="phone" name="phone" placeholder="Your Contact No..">
+    <br><br>
+
+    <label for="email">Email Id</label>
+    <input type="email" id="email" name="email" placeholder="Your Mail id..">
+    <br><br>
+     <label for="email">Experience</label><br><br>
+     <span style="font-size:14px">How would you rate your experience with the skills you have selected?<span>
+    
+<div class="grid-container">
+  
+  <div class="left" style="background-color:white;"><br><br><span style="font-size:20px">BEGINNER</span>
+ <br><hr><span style="font-size:16px"> you have been working with these skills for less than a year and are still learning</span>
+</div>
+  <div class="middle" style="background-color:white;"><br><br><span style="font-size:20px">INTERMEDIATE</span>
+ <br><hr><span style="font-size:16px"> you have been working with these skills for 2 to 5 years and can complete most common tasks</span>
+</div>  
+  <div class="right" style="background-color:white;"><br><br><span style="bold;font-size:20px">ADVANCED</span>
+ <br><hr><span style="font-size:16px"> you have been working with these skills for more than 5 years and are still an expert in them</span>
+</div>
+ </div>
+    <select id="exp" name="experience">
+      <option value="beginner">Beginner</option>
+      <option value="intermediate">Intermediate</option>
+      <option value="advanced">Advanced</option>
+    </select>
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+     <input type="submit" value="Next Page">
+  </form>
+  </div>
+
+  <div style="flex-basis:150px;height:600px;background-color:#eaeded">
+ </div>
+
+</div>
+</body>
+    
+</html>

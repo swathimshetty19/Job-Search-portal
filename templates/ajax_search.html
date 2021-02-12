@@ -1,0 +1,10 @@
+{% if skills.count > 0 %}
+
+{% for skill in skills%}
+
+<li><a href="/skills/get/{{pk}}/{{skill.skill}}/">{{skill.skill}}</a>  </li>
+
+{% endfor %}
+{% else %}
+<li>None to show</li>
+{% endif %}

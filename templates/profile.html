@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+{% load static %}
+<script type="text/javascript" src="{% static 'jquery-3.4.1.min.js' %}"></script> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
+<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="icon" href="{% static 'icon.png' %}" type="image/png" sizes="16x16">
+<link href="//www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<title>Your Projects</title>
+<style>
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #FFFFFF;
+    position: -webkit-sticky; 
+    position: sticky;
+    top: 0;
+}
+li {
+    float: right;
+}
+li a {
+    display: block;
+    color:#000000;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+li a:hover {
+    color:cornflowerblue;
+}
+.active {
+    color :cornflowerblue;
+}
+
+
+@font-face {
+  font-family: Poppins-Regular;
+  src: url('fonts/poppins/Poppins-Regular.ttf'); 
+}
+
+@font-face {
+  font-family: Poppins-Bold;
+  src: url('fonts/poppins/Poppins-Bold.ttf'); 
+}
+
+@font-face {
+  font-family: Poppins-Medium;
+  src: url('fonts/poppins/Poppins-Medium.ttf'); 
+}
+
+@font-face {
+  font-family: Montserrat-Bold;
+  src: url('fonts/montserrat/Montserrat-Bold.ttf'); 
+}
+
+a {
+
+	font-size: 14px;
+	line-height: 1.7;
+	color: #666666;
+	margin: 0px;
+	transition: all 0.4s;
+	-webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+}
+body, html {
+  height: 100%;
+  margin: 0;
+  
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.bg-image {
+ 
+  background-image: url("{% static 'img1.jpg' %}");
+
+  height: 100%; 
+  
+  
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+</style>
+<script type="text/javascript" >
+
+</script>
+</head>
+<body  ng-app="myApp" ng-controller="myCtrl">
+    <ul>
+      <li>&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+    
+      <li><a  class="active" href="{% url 'profile' pk=user %}"><b>About Me<b></a></li>
+      <!--<li><a href="{% url 'post_project' pk=user %}"><b>Post a Project<b></a></li>-->
+      <li><a href="{% url 'browse' user=user %}"><b>Search Jobs<b></a></li>
+      <li><a  href="/myprojects/{{user}}/"><b>Applied Jobs<b></a></li>
+      <li><a href="{% url 'home' %}"><b>Logout<b></a></li>
+      <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+      <li><img src="{% static 'logo.png' %}" width="15%" height="0.7%"></li>
+    </ul>
+    <div class="bg-image"></div>
+    <div ng-style="first_block">
+    <img src="{% static 'face2.jpg' %}" style="float:left" height=40% width=30%/>
+
+    <h2>  &nbsp&nbsp&nbsp {{user}}</h2>
+
+    
+    &nbsp&nbsp&nbsp <img src="{% static 'online.png' %}" style="float:inline-start" height=5% width=5%/>
+    <br/><br/><hr/>
+    <p ng-style='desc'><b>Email:</b>&nbsp&nbsp {{user_details.email}}<br/>
+      
+    <b>Phone number:</b>&nbsp&nbsp{{user_details.phone}}<br/>
+    <b>Experience level:</b>:&nbsp&nbsp{{user_details.experience}}<br/><hr/>
+
+    <b>Skill set:</b><br/>
+    {%for i in skills%}
+    <div ng-style="skills">{{i}}</div>
+          {%endfor%}
+    </p>
+      
+  </div>
+</body>
+  
+<script>
+	var app = angular.module("myApp", []);
+	app.controller("myCtrl", function($scope) {
+	  $scope.first_block = {
+      'font-family':'Montserrat-Bold',
+      'background-color':'white',
+      'color': 'black',
+      'font-size':'18px',
+      'border': '3px solid #f1f1f1',
+      'position': 'absolute',
+      'top': '50%',
+      'left': '50%',
+      'transform': 'translate(-50%, -50%)',
+      'z-index': '2',
+      'width': '40%',
+      'height':'60%',
+      'padding': '20px',
+	  }
+    $scope.desc= {
+	    'font-size': '14px',
+        'color': 'black',
+        'font-weight': 'normal',
+
+        
+	  }
+    $scope.skills= {
+	    'font-size': '16px',
+        'color': 'black',
+        'font-weight': 'normal',
+
+        
+	  }
+
+	});
+</script>
+
+
+</html>
+
+
+
+
+
+
+
+

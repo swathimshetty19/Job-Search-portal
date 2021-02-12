@@ -1,0 +1,239 @@
+<html>
+    <head>
+
+        <title>FreeLancer Website</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        {% load static %}
+        <link rel="icon" href="{% static 'icon.png' %}" type="image/png" size="16*16">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        {% load static %}
+    
+
+    <style>
+
+        ul{
+            list-style-type: none;
+            margin:0;
+            padding:2px;
+            overflow:hidden;
+            background-color: white;
+            position: -webkit-sticky;
+            position: sticky;
+            top:0;
+        
+        
+        }
+        li{
+            float:right;
+        
+        }
+        
+        li a{
+            display:block;
+            color: black;
+            text-align: center;
+            padding: 15px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        
+        }
+        li a:hover{
+            color:cornflowerblue;
+        
+        }
+
+        h2 {
+  transition: all linear 0.5s;
+  background-color:black;
+  height: 30px;
+  width: 50%;
+  position: relative;
+  top: 0;
+  left: 0;
+  color:azure;
+}
+
+p.b {
+  text-align: center;
+}
+.grey_block{
+		
+        background-color: lightgray;
+        height: 150%;
+        width: 100%;
+        position: relative;
+        top:0;
+        left: 0;
+    }
+
+    .i-am-centered {
+	    position:absolute ;
+		top: 25%;
+		left: 20%;
+		
+	    border: 3px solid #f1f1f1; 
+            max-width: 1000px; 
+            padding:50px 25px 50px 25px;
+	    text-align: center; 
+	    background: white;
+	     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        input[type=text]:focus {
+  border: 3px solid lightblue;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+        </style>
+        </head>
+
+<body>
+
+    <ul>
+        <li>&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+      
+        
+        <li><a href="{% url 'post_project' pk=pk %}"><b>Post a new Job<b></a></li>
+      
+        <li><a  href="/myprojects/{{pk}}/"><b>Jobs Posted<b></a></li>
+        <li><a href="{% url 'home' %}"><b>Logout<b></a></li>
+        <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+        <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+  
+        <li><img src="{% static 'logo.png' %}" width="12%" height="25px"></li>
+    </ul>
+
+    <h1><p class="b" >Job Details Here : <p></h1>
+
+        <div class="container">
+    <form method="POST" class="post-form">
+        {% csrf_token %}
+        
+        <div class="form-group"> 
+            <label><i>Enter Company and Role Name : </i></label> 
+            {{ form.name }} 
+        </div>
+        <div class="form-group"> 
+            <label><i>Describe Job role : </i></label> 
+            {{ form.desc }} 
+        </div>
+ 
+        <div class="form-group" > 
+            <label><i>Enter Skills Required : </i></label> 
+            {{ form.skills }} 
+        </div>
+        
+
+
+        <div class="form-group" > 
+            <label><i>Enter expected payment(per month): </i></label> 
+            {{ form.max_payment }} 
+        </div>
+        <div class="form-group" > 
+            <label><i>Enter Expected Joining Date:  </i></label> 
+            {{ form.days }} 
+        </div>
+    
+        <button type="submit" class="save btn btn-primary" style="width:20%;height: 40px;background-color: cornflowerblue;font-size: 15px;">Done</button>
+    </form>
+    </div>
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
